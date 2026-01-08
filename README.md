@@ -197,5 +197,3 @@ root.append(element2);
 - `createElement` is one of the methods inside React.
 
 ---
-
-This is **exactly your learning**, just organized and clarified—no extra theory, no added topics, no missing steps.
