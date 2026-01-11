@@ -197,3 +197,22 @@ root.append(element2);
 - `createElement` is one of the methods inside React.
 
 ---
+
+React's(WHAT) job is only to describe what the UI should look like. It doesn't create DOM elements. It creates lightweight Javascript objects that act as blueprints. - doesnt create anything - it'll just give you the object -just UI declaration
+{
+type:"h1",
+props:,
+style:{},
+children:{},
+className:
+}
+react just gives you this object
+not its ReactDOM's job to get this element and operform operations onto it
+
+ReactDOM's (HOW) job this is the renderer - Job is to take the blueprint from React and actually build the UI for specific platform(in this case web browser)
+
+//React just gives you the react element that signifies how the Ui will look like, now its the job of ReactDOM to paint it onto the DOM
+
+why do we need ReactDOM sperately,
+react is used in web, mobile, pdfs,.....
+rendering process will be different for various platforms...the process of describing how th eui will look like will be the same and react will handle that part
