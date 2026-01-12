@@ -24,10 +24,38 @@ root.render(element2);
 // <script type="text/babel" src="script.js"></script>
 //now this jsx code runs smoothly
 
+//Babel converts the JSX to react element -> then this react element is given to REACTDOM and reactDOM converts it to a real HTML element
+
 const element3 = (
   <div>
-    <h1>Hellooo</h1>
+    <h1>
+      {/* <h1 id="title" className="first"></h1> */}
+      Hellooo
+    </h1>
     <h2>HIii</h2>
   </div>
 );
+//(JSX code) -> wrapped in ()
 root.render(element3);
+
+const element4 = (
+  <>
+    <h1>frebjghb</h1>
+    <h2>kaise ho</h2>
+  </> // should be wrapped under some element...div or <> </> called as fragment
+  //cuz if not wrapped...which one will go in element4 - h1 or h2.....to prevent that we wrap it inside a div or fragment
+  //we should have only one root
+);
+
+//React Component
+// its just a function that return JSX
+function App() {
+  return <h1>hello namaste</h1>;
+  //returning JSX
+} // this is a react component
+
+root.render(App());
+// root.render(<App />); can be called like this too
+// App() and <App/>
+//since we are calling this App() like this so ....can we also pass-in arguments???
+// const a = App("devashish") like this
