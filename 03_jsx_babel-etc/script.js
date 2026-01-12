@@ -49,12 +49,13 @@ const element4 = (
 
 //React Component
 // its just a function that return JSX
-function App() {
-  return <h1>hello namaste</h1>;
+function App(name) {
+  return <h1>hello namaste from {name}</h1>;
   //returning JSX
 } // this is a react component
 
-root.render(App());
+const a = App("devashish");
+root.render(a);
 // root.render(<App />); can be called like this too
 // App() and <App/>
 //since we are calling this App() like this so ....can we also pass-in arguments???
