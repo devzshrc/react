@@ -216,3 +216,127 @@ ReactDOM's (HOW) job this is the renderer - Job is to take the blueprint from Re
 why do we need ReactDOM sperately,
 react is used in web, mobile, pdfs,.....
 rendering process will be different for various platforms...the process of describing how th eui will look like will be the same and react will handle that part
+
+VITE- a bundler
+npm create vite@latest
+# Select: React
+# Select: JavaScript
+cd your-project-name
+npm install
+npm run dev
+
+
+How we do this manually?
+---
+
+### Core Idea
+
+**Everything in React is built from `React.createElement()`**, even when you write JSX.
+
+---
+
+### 1. `React.createElement()`
+
+* `React.createElement(type, props, children)` creates a **React Element** (a plain JS object).
+* Nested UI requires **deeply nested function calls**, which is hard to read and write.
+* Example: creating `div > h1 + h2` manually is verbose and ugly.
+
+Bottom line:
+👉 This syntax works, but humans shouldn’t write it directly.
+
+---
+
+### 2. React Root & Rendering
+
+* `ReactDOM.createRoot(container)` creates a root connection to the DOM.
+* `root.render(element)` converts a **React Element** into **real DOM nodes**.
+* Calling `render()` again **replaces** the previous render, it does not append.
+
+---
+
+### 3. JSX Exists to Fix the Problem
+
+* JSX looks like HTML but **is not HTML**.
+* JSX is syntactic sugar for `React.createElement()`.
+
+Flow:
+
+```
+JSX
+↓ (Babel)
+React.createElement()
+↓
+React Element (JS Object)
+↓ (ReactDOM)
+Real DOM
+```
+
+---
+
+### 4. Babel’s Job
+
+* Browsers do **not** understand JSX.
+* **Babel** converts JSX into `React.createElement()` before execution.
+* That’s why `type="text/babel"` or a build step is required.
+
+No Babel → JSX breaks.
+
+---
+
+### 5. JSX Rules
+
+* JSX must return **a single root element**.
+* Multiple siblings must be wrapped in:
+
+  * `<div>...</div>` or
+  * `<>...</>` (**React Fragment**)
+* This avoids ambiguity about what the component returns.
+
+---
+
+### 6. JSX Is Just JavaScript
+
+* JSX expressions are wrapped in `()`.
+* Comments inside JSX use `{/* comment */}`.
+* Ultimately, JSX compiles to function calls.
+
+---
+
+### 7. React Components
+
+* A React component is **just a function that returns JSX**.
+* Example:
+
+  ```js
+  function App(name) {
+    return <h1>Hello {name}</h1>;
+  }
+  ```
+* Calling `App("devashish")` returns a React Element.
+* `root.render(a)` renders that element.
+
+Important distinction:
+
+* `App()` → normal JS function call
+* `<App />` → React component invocation (preferred, supports props & lifecycle)
+
+---
+
+### 8. Props vs Arguments (Important)
+
+* Calling `App("devashish")` passes a raw argument.
+* `<App name="devashish" />` passes **props**, which is the correct React pattern.
+* Mixing the two is technically possible but conceptually wrong.
+
+---
+
+### Final Mental Model
+
+* JSX is **not magic**.
+* React components are **functions**.
+* JSX → Babel → `React.createElement()` → ReactDOM → real DOM.
+* One root element rule is non-negotiable.
+* Use components with `<Component />`, not `Component()`.
+
+
+
