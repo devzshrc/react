@@ -5,21 +5,21 @@
 ## 1. Creating an HTML Element Using JavaScript
 
 ```js
-document.createElement('h1');
+document.createElement("h1");
 ```
 
 - This creates an `h1` element in memory.
 - At this point, it is **not shown on the page**.
 
 ```js
-element.textContent = 'Hiiiii testing 1233.....';
+element.textContent = "Hiiiii testing 1233.....";
 ```
 
 - This adds text inside the `h1` element.
 
 ```js
-element.className = 'element';
-element.id = 'first';
+element.className = "element";
+element.id = "first";
 ```
 
 - `className` sets the CSS class.
@@ -30,7 +30,7 @@ element.id = 'first';
 ## 2. Attaching the Element to the DOM
 
 ```js
-const root = document.getElementById('root');
+const root = document.getElementById("root");
 ```
 
 - Selects an existing element from the HTML.
@@ -47,9 +47,9 @@ root.append(element);
 ## 3. Adding Styles Using JavaScript
 
 ```js
-element.style.fontSize = '30px';
-element.style.backgroundColor = 'orange';
-element.style.color = 'white';
+element.style.fontSize = "30px";
+element.style.backgroundColor = "orange";
+element.style.color = "white";
 ```
 
 - `style` is an object attached to the element.
@@ -114,7 +114,7 @@ for (const key in attributes) {
 ## 8. Handling the `style` Attribute
 
 ```js
-if (key == 'style') {
+if (key == "style") {
   Object.assign(element.style, attributes.style);
 }
 ```
@@ -219,15 +219,16 @@ rendering process will be different for various platforms...the process of descr
 
 VITE- a bundler
 npm create vite@latest
+
 # Select: React
+
 # Select: JavaScript
+
 cd your-project-name
 npm install
 npm run dev
 
-
-How we do this manually?
----
+## How we do this manually?
 
 ### Core Idea
 
@@ -237,9 +238,9 @@ How we do this manually?
 
 ### 1. `React.createElement()`
 
-* `React.createElement(type, props, children)` creates a **React Element** (a plain JS object).
-* Nested UI requires **deeply nested function calls**, which is hard to read and write.
-* Example: creating `div > h1 + h2` manually is verbose and ugly.
+- `React.createElement(type, props, children)` creates a **React Element** (a plain JS object).
+- Nested UI requires **deeply nested function calls**, which is hard to read and write.
+- Example: creating `div > h1 + h2` manually is verbose and ugly.
 
 Bottom line:
 👉 This syntax works, but humans shouldn’t write it directly.
@@ -248,16 +249,16 @@ Bottom line:
 
 ### 2. React Root & Rendering
 
-* `ReactDOM.createRoot(container)` creates a root connection to the DOM.
-* `root.render(element)` converts a **React Element** into **real DOM nodes**.
-* Calling `render()` again **replaces** the previous render, it does not append.
+- `ReactDOM.createRoot(container)` creates a root connection to the DOM.
+- `root.render(element)` converts a **React Element** into **real DOM nodes**.
+- Calling `render()` again **replaces** the previous render, it does not append.
 
 ---
 
 ### 3. JSX Exists to Fix the Problem
 
-* JSX looks like HTML but **is not HTML**.
-* JSX is syntactic sugar for `React.createElement()`.
+- JSX looks like HTML but **is not HTML**.
+- JSX is syntactic sugar for `React.createElement()`.
 
 Flow:
 
@@ -275,9 +276,9 @@ Real DOM
 
 ### 4. Babel’s Job
 
-* Browsers do **not** understand JSX.
-* **Babel** converts JSX into `React.createElement()` before execution.
-* That’s why `type="text/babel"` or a build step is required.
+- Browsers do **not** understand JSX.
+- **Babel** converts JSX into `React.createElement()` before execution.
+- That’s why `type="text/babel"` or a build step is required.
 
 No Babel → JSX breaks.
 
@@ -285,58 +286,58 @@ No Babel → JSX breaks.
 
 ### 5. JSX Rules
 
-* JSX must return **a single root element**.
-* Multiple siblings must be wrapped in:
+- JSX must return **a single root element**.
+- Multiple siblings must be wrapped in:
+  - `<div>...</div>` or
+  - `<>...</>` (**React Fragment**)
 
-  * `<div>...</div>` or
-  * `<>...</>` (**React Fragment**)
-* This avoids ambiguity about what the component returns.
+- This avoids ambiguity about what the component returns.
 
 ---
 
 ### 6. JSX Is Just JavaScript
 
-* JSX expressions are wrapped in `()`.
-* Comments inside JSX use `{/* comment */}`.
-* Ultimately, JSX compiles to function calls.
+- JSX expressions are wrapped in `()`.
+- Comments inside JSX use `{/* comment */}`.
+- Ultimately, JSX compiles to function calls.
 
 ---
 
 ### 7. React Components
 
-* A React component is **just a function that returns JSX**.
-* Example:
+- A React component is **just a function that returns JSX**.
+- Example:
 
   ```js
   function App(name) {
     return <h1>Hello {name}</h1>;
   }
   ```
-* Calling `App("devashish")` returns a React Element.
-* `root.render(a)` renders that element.
+
+- Calling `App("devashish")` returns a React Element.
+- `root.render(a)` renders that element.
 
 Important distinction:
 
-* `App()` → normal JS function call
-* `<App />` → React component invocation (preferred, supports props & lifecycle)
+- `App()` → normal JS function call
+- `<App />` → React component invocation (preferred, supports props & lifecycle)
 
 ---
 
 ### 8. Props vs Arguments (Important)
 
-* Calling `App("devashish")` passes a raw argument.
-* `<App name="devashish" />` passes **props**, which is the correct React pattern.
-* Mixing the two is technically possible but conceptually wrong.
+- Calling `App("devashish")` passes a raw argument.
+- `<App name="devashish" />` passes **props**, which is the correct React pattern.
+- Mixing the two is technically possible but conceptually wrong.
 
 ---
 
 ### Final Mental Model
 
-* JSX is **not magic**.
-* React components are **functions**.
-* JSX → Babel → `React.createElement()` → ReactDOM → real DOM.
-* One root element rule is non-negotiable.
-* Use components with `<Component />`, not `Component()`.
+- JSX is **not magic**.
+- React components are **functions**.
+- JSX → Babel → `React.createElement()` → ReactDOM → real DOM.
+- One root element rule is non-negotiable.
+- Use components with `<Component />`, not `Component()`.
 
-
-
+## useState hook
